@@ -21,12 +21,12 @@ export function Hero() {
         <div className="hero-portrait" data-hero-portrait>
           <Image
             src={`${basePath}/hero-figure.png`}
-            alt="Stylised placeholder figure for Rameez Majeed; replace with an approved portrait"
+            alt="Editorial silhouette representing Rameez Majeed"
             fill
             priority
             sizes="(max-width: 700px) 95vw, 58vw"
           />
-          <span>PORTRAIT PLACEHOLDER</span>
+          <span>RAMEEZ MAJEED / LIVERPOOL</span>
         </div>
 
         <div className="hero-stats-card hero-stats-card--one">

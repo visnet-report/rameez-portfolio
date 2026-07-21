@@ -1,11 +1,20 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { milestones, projects } from "@/content/site";
 
 export function Journey() {
   const [expanded, setExpanded] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (expanded === null) return;
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setExpanded(null);
+    };
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, [expanded]);
 
   return (
     <section className="journey rail-layout" id="about">
@@ -40,12 +49,14 @@ export function Journey() {
       </div>
 
       {expanded !== null && (
-        <div className="journey-modal" role="dialog" aria-modal="true" aria-label={`${milestones[expanded].role} details`}>
-          <button type="button" onClick={() => setExpanded(null)}>CLOSE ×</button>
-          <span>{milestones[expanded].year}</span>
-          <h3>{milestones[expanded].role}</h3>
-          <p>{milestones[expanded].text}</p>
-          <p>This chapter helped shape the combination of campaign leadership, hands-on delivery and technical curiosity that defines the work today.</p>
+        <div className="journey-modal-backdrop" onMouseDown={() => setExpanded(null)}>
+          <div className="journey-modal" role="dialog" aria-modal="true" aria-label={`${milestones[expanded].role} details`} onMouseDown={(event) => event.stopPropagation()}>
+            <button type="button" onClick={() => setExpanded(null)} autoFocus>CLOSE ×</button>
+            <span>{milestones[expanded].year}</span>
+            <h3>{milestones[expanded].role}</h3>
+            <p>{milestones[expanded].text}</p>
+            <p>This chapter helped shape the combination of campaign leadership, hands-on delivery and technical curiosity that defines the work today.</p>
+          </div>
         </div>
       )}
     </section>

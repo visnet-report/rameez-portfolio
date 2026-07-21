@@ -46,7 +46,8 @@ export function MotionProvider({ children }: { children: React.ReactNode }) {
           gsap.to(track, { x: () => -distance(), ease: "none", scrollTrigger: { trigger: work, start: "top top", end: "bottom bottom", scrub: 1, invalidateOnRefresh: true } });
         }
 
-        gsap.fromTo("[data-capability-card]", { opacity: 0.08, scale: 0.92, y: 70 }, { opacity: 1, scale: 1, y: 0, stagger: 0.14, ease: "power2.out", scrollTrigger: { trigger: ".capabilities-list", start: "top 82%", end: "bottom 65%", scrub: 1 } });
+        gsap.fromTo("[data-capability-card]", { opacity: 0, scale: 0.72, y: 70 }, { opacity: 1, scale: 1, y: 0, stagger: 0.12, ease: "back.out(1.4)", scrollTrigger: { trigger: ".capabilities", start: "top 65%", end: "top 15%", scrub: 1 } });
+        gsap.to(".capabilities-copy", { yPercent: -10, scale: 1.035, ease: "none", scrollTrigger: { trigger: ".capabilities", start: "top top", end: "bottom bottom", scrub: 1 } });
 
         ScrollTrigger.refresh();
       });

@@ -7,7 +7,7 @@ export function Hero() {
   return (
     <section className="hero" id="hero">
       <div className="hero-stage">
-        <div className="hero-word" aria-hidden="true">RM</div>
+        <div className="hero-word" aria-hidden="true">RAMEEZ</div>
         <div className="hero-topline">
           <p>THE MARKETER WHO<br />BUILDS THE SYSTEM.</p>
           <div><a href="https://linkedin.com/in/rameez-majeed" target="_blank" rel="noreferrer">LINKEDIN ↗</a><a href="mailto:meramiz@gmail.com">EMAIL ↗</a></div>
@@ -19,13 +19,7 @@ export function Hero() {
         </nav>
 
         <div className="hero-portrait" data-hero-portrait>
-          <Image
-            src={`${basePath}/hero-figure.png`}
-            alt="Editorial silhouette representing Rameez Majeed"
-            fill
-            priority
-            sizes="(max-width: 700px) 95vw, 58vw"
-          />
+          <Image src={`${basePath}/hero-figure.png`} alt="Editorial silhouette representing Rameez Majeed" fill priority sizes="(max-width: 700px) 110vw, 68vw" />
           <span>RAMEEZ MAJEED / LIVERPOOL</span>
         </div>
 
@@ -45,8 +39,8 @@ export function Hero() {
           <div><a href="mailto:meramiz@gmail.com?subject=Portfolio%20enquiry">Start a project</a><a href="#about">About me</a></div>
         </div>
 
+        <p className="hero-identity">The marketing specialist.<br />That&apos;s Rameez.</p>
         <p className="hero-copy">Working closely with marketing, sales and product teams to connect creative campaigns, technical execution and long-term value.</p>
-        <div className="scroll-cue"><span /> SCROLL TO EXPLORE</div>
       </div>
     </section>
   );

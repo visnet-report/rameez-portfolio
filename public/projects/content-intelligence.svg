@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1050" role="img" aria-labelledby="t d">
+  <title id="t">Content intelligence project preview</title><desc id="d">Keyword ranking matrix with market signals.</desc>
+  <rect width="900" height="1050" fill="#d8f45a"/><circle cx="740" cy="150" r="220" fill="#ff5a36"/><circle cx="740" cy="150" r="145" fill="#171915"/><circle cx="740" cy="150" r="63" fill="#f2f0e9"/>
+  <g transform="translate(74 222)"><rect width="752" height="662" fill="#f2f0e9" stroke="#171915" stroke-width="6"/><path d="M0 82h752M0 180h752M0 278h752M0 376h752M0 474h752M0 572h752M148 82v580M560 82v580M660 82v580" stroke="#171915" stroke-width="3"/><rect x="0" width="752" height="82" fill="#171915"/><text x="27" y="52" fill="#f2f0e9" font-family="Arial,sans-serif" font-size="17" letter-spacing="4">KEYWORD OPPORTUNITY MATRIX</text>
+  <g font-family="Arial,sans-serif" font-size="15" fill="#171915"><text x="25" y="137">01</text><text x="177" y="137">HIGH-INTENT TERM</text><text x="590" y="137">UK</text><text x="687" y="137">84</text><text x="25" y="235">02</text><text x="177" y="235">CONTENT GAP</text><text x="590" y="235">US</text><text x="687" y="235">78</text><text x="25" y="333">03</text><text x="177" y="333">QUICK WIN</text><text x="590" y="333">AU</text><text x="687" y="333">71</text></g>
+  <rect x="148" y="376" width="412" height="98" fill="#ff5a36"/><rect x="660" y="376" width="92" height="98" fill="#171915"/><text x="688" y="434" fill="#f2f0e9" font-family="Arial,sans-serif" font-weight="700" font-size="22">92</text></g>
+  <text x="73" y="958" fill="#171915" font-family="Arial,sans-serif" font-weight="700" font-size="48">EVIDENCE → ROADMAP</text>
+</svg>

@@ -1,0 +1,11 @@
+node_modules/
+.next/
+out/
+*.tsbuildinfo
+*.log
+.env*
+desktop.png
+mobile.png
+Rameez_Majeed_CV.docx
+Rameez_Majeed_CV.pdf
+heynesh-modern-rebuild-codex-brief.md

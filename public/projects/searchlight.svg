@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1050" role="img" aria-labelledby="t d">
+  <title id="t">Searchlight project preview</title><desc id="d">Editorial illustration of an SEO tools interface.</desc>
+  <rect width="900" height="1050" fill="#171915"/><path d="M0 780 900 510v540H0z" fill="#d8f45a"/>
+  <g stroke="#f2f0e9" opacity=".16"><path d="M0 130h900M0 260h900M0 390h900M0 520h900M0 650h900M0 780h900M130 0v1050M260 0v1050M390 0v1050M520 0v1050M650 0v1050M780 0v1050"/></g>
+  <g transform="translate(116 150) rotate(-3 335 280)"><rect width="668" height="560" rx="8" fill="#f2f0e9" stroke="#171915" stroke-width="7"/><circle cx="36" cy="32" r="9" fill="#ff5a36"/><circle cx="64" cy="32" r="9" fill="#d8f45a"/><path d="M30 76h608" stroke="#171915" stroke-width="3"/><rect x="36" y="114" width="368" height="40" fill="#171915"/><rect x="36" y="180" width="536" height="14" fill="#8a8d84"/><rect x="36" y="210" width="472" height="14" fill="#8a8d84"/><rect x="36" y="264" width="178" height="206" fill="#d8f45a"/><rect x="236" y="264" width="178" height="206" fill="#ff5a36"/><rect x="436" y="264" width="178" height="206" fill="#171915"/></g>
+  <text x="70" y="925" fill="#171915" font-family="Arial,sans-serif" font-weight="700" font-size="72" letter-spacing="-4">SEARCHLIGHT</text><text x="74" y="976" fill="#171915" font-family="Arial,sans-serif" font-size="18" letter-spacing="4">148+ SEO &amp; DEVELOPER TOOLS</text>
+</svg>

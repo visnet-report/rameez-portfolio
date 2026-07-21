@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1050" role="img" aria-labelledby="t d">
+  <title id="t">Paid media analysis project preview</title><desc id="d">Abstract spend and opportunity chart.</desc>
+  <rect width="900" height="1050" fill="#171915"/><text x="70" y="110" fill="#f2f0e9" font-family="Arial,sans-serif" font-size="18" letter-spacing="5">PAID MEDIA / GAP ANALYSIS</text><path d="M70 150h760" stroke="#f2f0e9" opacity=".3"/>
+  <g transform="translate(70 230)"><rect width="760" height="570" fill="#f2f0e9"/><path d="M70 475h620M70 375h620M70 275h620M70 175h620M70 75h620" stroke="#171915" opacity=".15"/>
+  <rect x="105" y="305" width="70" height="170" fill="#ff5a36"/><rect x="215" y="235" width="70" height="240" fill="#171915"/><rect x="325" y="150" width="70" height="325" fill="#d8f45a"/><rect x="435" y="265" width="70" height="210" fill="#ff5a36"/><rect x="545" y="105" width="70" height="370" fill="#171915"/>
+  <path d="m105 268 145-92 108 35 120-110 137-36" fill="none" stroke="#ff5a36" stroke-width="9"/><g fill="#ff5a36"><circle cx="105" cy="268" r="11"/><circle cx="250" cy="176" r="11"/><circle cx="358" cy="211" r="11"/><circle cx="478" cy="101" r="11"/><circle cx="615" cy="65" r="11"/></g></g>
+  <rect x="70" y="850" width="240" height="91" fill="#d8f45a"/><text x="97" y="888" fill="#171915" font-family="Arial,sans-serif" font-size="13" letter-spacing="3">OPPORTUNITY</text><text x="97" y="924" fill="#171915" font-family="Arial,sans-serif" font-weight="700" font-size="25">PRIORITISED</text><text x="830" y="980" fill="#f2f0e9" text-anchor="end" font-family="Arial,sans-serif" font-size="14" letter-spacing="4">SEARCH · SOCIAL · DISPLAY</text>
+</svg>

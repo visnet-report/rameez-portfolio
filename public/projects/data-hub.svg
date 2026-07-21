@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1050" role="img" aria-labelledby="t d">
+  <title id="t">Marketing data hub project preview</title><desc id="d">Abstract dashboard with connected data panels.</desc>
+  <rect width="900" height="1050" fill="#e9e7de"/><g stroke="#171915" opacity=".13"><path d="M0 150h900M0 300h900M0 450h900M0 600h900M0 750h900M150 0v1050M300 0v1050M450 0v1050M600 0v1050M750 0v1050"/></g>
+  <rect x="72" y="82" width="756" height="754" fill="#171915"/><text x="112" y="151" fill="#f2f0e9" font-family="Arial,sans-serif" font-size="22" letter-spacing="5">MARKETING DATA HUB</text>
+  <rect x="112" y="204" width="300" height="242" fill="#d8f45a"/><path d="m146 385 48-52 52 18 63-94 68 48" fill="none" stroke="#171915" stroke-width="11"/><circle cx="309" cy="257" r="12" fill="#ff5a36"/>
+  <rect x="436" y="204" width="350" height="110" fill="#f2f0e9"/><text x="470" y="269" fill="#171915" font-family="Arial,sans-serif" font-weight="700" font-size="45">46+</text><text x="575" y="269" fill="#171915" font-family="Arial,sans-serif" font-size="15">LIVE REPORTS</text>
+  <rect x="436" y="336" width="350" height="110" fill="#ff5a36"/><text x="470" y="400" fill="#171915" font-family="Arial,sans-serif" font-weight="700" font-size="45">12</text><text x="555" y="400" fill="#171915" font-family="Arial,sans-serif" font-size="15">REPORT CATEGORIES</text>
+  <g fill="#f2f0e9"><rect x="112" y="486" width="674" height="54"/><rect x="112" y="562" width="510" height="20" opacity=".45"/><rect x="112" y="602" width="606" height="20" opacity=".45"/><rect x="112" y="642" width="440" height="20" opacity=".45"/><rect x="112" y="698" width="216" height="82"/><rect x="350" y="698" width="216" height="82"/><rect x="588" y="698" width="198" height="82"/></g>
+  <text x="72" y="940" fill="#171915" font-family="Arial,sans-serif" font-weight="700" font-size="62" letter-spacing="-3">ONE VIEW.</text><text x="72" y="998" fill="#ff5a36" font-family="Arial,sans-serif" font-weight="700" font-size="62" letter-spacing="-3">BETTER DECISIONS.</text>
+</svg>

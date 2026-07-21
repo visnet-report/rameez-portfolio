@@ -1,17 +1,21 @@
-import { ArrowUpRight } from "lucide-react";
-
 export function CTA() {
   return (
-    <section className="cta" id="contact">
-      <div className="cta__grid" aria-hidden="true" />
-      <p className="eyebrow"><span />08 / Start here</p>
-      <div className="cta__body" data-reveal>
-        <h2>Got a campaign to sharpen<br />or a system to <em>build?</em></h2>
-        <a href="mailto:meramiz@gmail.com?subject=Portfolio%20enquiry">
-          <span>Start a conversation</span><ArrowUpRight />
-        </a>
+    <section className="cta rail-layout" id="contact">
+      <div className="cta-copy" data-reveal>
+        <h2>Transform Your<br />Marketing<br />Operating System</h2>
+        <p>Every marketing function has room to improve. Get a clear view of what works, what slows the team down and where a more connected setup can create value.</p>
       </div>
-      <div className="cta__meta"><span>RESPONSE TARGET<br />WITHIN 2 WORKING DAYS</span><span>EMAIL<br />MERAMIZ@GMAIL.COM</span><span>LOCATION<br />LIVERPOOL, UK</span></div>
+      <div className="cta-browser" aria-hidden="true">
+        <div className="cta-browser__bar"><span /><span /><span /><b>rameez / marketing-system</b></div>
+        <div className="cta-browser__body">
+          <div className="cta-orbit"><span>STRATEGY</span><span>DATA</span><span>ACTION</span><strong>RM</strong></div>
+          <p>CAMPAIGN → SIGNAL → DECISION → IMPROVEMENT</p>
+        </div>
+      </div>
+      <div className="cta-action">
+        <p>Have something in mind?</p>
+        <a href="mailto:meramiz@gmail.com?subject=Portfolio%20enquiry"><span>Let’s talk</span><i>↗</i></a>
+      </div>
     </section>
   );
 }

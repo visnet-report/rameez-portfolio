@@ -2,30 +2,23 @@
 
 import { useState } from "react";
 import { faqs } from "@/content/site";
-import { SectionHeading } from "@/components/ui/SectionHeading";
 
 export function FAQ() {
-  const [open, setOpen] = useState(0);
+  const [open, setOpen] = useState<number | null>(null);
   return (
-    <section className="section faq" id="faq">
-      <SectionHeading eyebrow="09 / Questions, answered" title={<>Before we get<br /><em>into it.</em></>} />
-      <div className="faq__layout">
-        <aside data-reveal><p>Still curious?</p><a href="mailto:meramiz@gmail.com">Ask something specific ↗</a></aside>
-        <div className="faq__list">
-          {faqs.map(([question, answer], index) => {
-            const isOpen = open === index;
-            return (
-              <div className={`faq-item ${isOpen ? "open" : ""}`} key={question} data-reveal>
-                <h3>
-                  <button aria-expanded={isOpen} aria-controls={`faq-panel-${index}`} onClick={() => setOpen(isOpen ? -1 : index)}>
-                    <span>0{index + 1}</span>{question}<i>{isOpen ? "—" : "+"}</i>
-                  </button>
-                </h3>
-                <div id={`faq-panel-${index}`} className="faq-panel" role="region" aria-hidden={!isOpen}><p>{answer}</p></div>
-              </div>
-            );
-          })}
-        </div>
+    <section className="faq rail-layout" id="faq">
+      <div className="faq-word" aria-hidden="true">RM<sup>®</sup></div>
+      <div className="faq-heading"><span>FAQ</span><h2>Got any<br />questions?</h2></div>
+      <div className="faq-grid">
+        {faqs.map(([question, answer], index) => {
+          const isOpen = open === index;
+          return (
+            <article className={isOpen ? "open" : ""} key={question}>
+              <h3><button type="button" aria-expanded={isOpen} onClick={() => setOpen(isOpen ? null : index)}><span>{question}</span><i>{isOpen ? "−" : "+"}</i></button></h3>
+              <div className="faq-answer"><p>{answer}</p></div>
+            </article>
+          );
+        })}
       </div>
     </section>
   );

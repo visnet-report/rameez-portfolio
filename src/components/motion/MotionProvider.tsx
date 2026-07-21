@@ -4,57 +4,59 @@ import { useEffect } from "react";
 
 export function MotionProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduceMotion) {
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduced) {
       document.documentElement.classList.add("reduce-motion");
       return;
     }
 
     let cleanup = () => {};
-
     const setup = async () => {
       const [{ default: Lenis }, { gsap }, { ScrollTrigger }] = await Promise.all([
-        import("lenis"),
-        import("gsap"),
-        import("gsap/ScrollTrigger"),
+        import("lenis"), import("gsap"), import("gsap/ScrollTrigger"),
       ]);
-
       gsap.registerPlugin(ScrollTrigger);
-      const lenis = new Lenis({ duration: 1.05, smoothWheel: true });
-      const update = (time: number) => lenis.raf(time * 1000);
+
+      const lenis = new Lenis({ duration: 1.15, smoothWheel: true, wheelMultiplier: 0.9 });
+      const tick = (time: number) => lenis.raf(time * 1000);
       lenis.on("scroll", ScrollTrigger.update);
-      gsap.ticker.add(update);
+      gsap.ticker.add(tick);
       gsap.ticker.lagSmoothing(0);
 
-      const heroTween = gsap.fromTo(
-        "#hero [data-reveal]",
-        { opacity: 0, y: 32 },
-        { opacity: 1, y: 0, duration: 0.75, stagger: 0.1, delay: 0.08, ease: "power3.out" },
-      );
+      const context = gsap.context(() => {
+        gsap.timeline({ scrollTrigger: { trigger: "#hero", start: "top top", end: "bottom bottom", scrub: 1 } })
+          .to(".hero-word", { scale: 0.72, yPercent: -8, ease: "none" }, 0)
+          .to("[data-hero-portrait]", { scale: 1.18, filter: "blur(8px)", yPercent: 8, ease: "none" }, 0)
+          .to(".hero-title", { yPercent: -35, scale: 0.88, ease: "none" }, 0)
+          .to(".hero-stats-card--one", { xPercent: -45, yPercent: -25, ease: "none" }, 0)
+          .to(".hero-stats-card--two", { xPercent: 35, yPercent: 15, ease: "none" }, 0)
+          .to(".hero-traits", { xPercent: 25, yPercent: -20, ease: "none" }, 0)
+          .to(".hero-stage", { opacity: 0.18, scale: 0.96, ease: "none" }, 0.78);
 
-      document.querySelectorAll<HTMLElement>("[data-reveal]").forEach((element) => {
-        if (element.closest("#hero")) return;
-        gsap.fromTo(
-          element,
-          { opacity: 0, y: 38 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            ease: "power3.out",
-            scrollTrigger: { trigger: element, start: "top 88%", once: true },
-          },
-        );
+        document.querySelectorAll<HTMLElement>("[data-reveal]").forEach((element) => {
+          gsap.fromTo(element, { opacity: 0, y: 55 }, { opacity: 1, y: 0, duration: 0.9, ease: "power3.out", scrollTrigger: { trigger: element, start: "top 88%", once: true } });
+        });
+
+        gsap.fromTo(".journey-path path", { strokeDasharray: 3500, strokeDashoffset: 3500 }, { strokeDashoffset: 0, ease: "none", scrollTrigger: { trigger: ".journey-map", start: "top 75%", end: "bottom 35%", scrub: true } });
+
+        const work = document.querySelector<HTMLElement>(".work");
+        const track = document.querySelector<HTMLElement>("[data-horizontal-track]");
+        if (work && track && window.innerWidth > 760) {
+          const distance = () => Math.max(0, track.scrollWidth - window.innerWidth + (window.innerWidth > 900 ? 250 : 32));
+          gsap.to(track, { x: () => -distance(), ease: "none", scrollTrigger: { trigger: work, start: "top top", end: "bottom bottom", scrub: 1, invalidateOnRefresh: true } });
+        }
+
+        gsap.fromTo("[data-capability-card]", { opacity: 0.08, scale: 0.92, y: 70 }, { opacity: 1, scale: 1, y: 0, stagger: 0.14, ease: "power2.out", scrollTrigger: { trigger: ".capabilities-list", start: "top 82%", end: "bottom 65%", scrub: 1 } });
+
+        ScrollTrigger.refresh();
       });
 
       cleanup = () => {
-        heroTween.kill();
-        ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-        gsap.ticker.remove(update);
+        context.revert();
+        gsap.ticker.remove(tick);
         lenis.destroy();
       };
     };
-
     setup();
     return () => cleanup();
   }, []);

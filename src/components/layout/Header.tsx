@@ -1,68 +1,84 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { Menu, X } from "lucide-react";
+import { useEffect, useState } from "react";
 import { navItems } from "@/content/site";
 
+const navGlyphs = ["⌂", "◒", "▰", "≋", "ϟ", "♟", "?"];
+
 export function Header() {
-  const [open, setOpen] = useState(false);
-  const [active, setActive] = useState("about");
-  const menuRef = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+  const [active, setActive] = useState("hero");
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
+    const onScroll = () => setVisible(window.scrollY > window.innerHeight * 1.05);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+
     const observer = new IntersectionObserver(
       (entries) => entries.forEach((entry) => entry.isIntersecting && setActive(entry.target.id)),
-      { rootMargin: "-40% 0px -52% 0px" },
+      { rootMargin: "-35% 0px -55% 0px" },
     );
     navItems.forEach(([id]) => {
-      const element = document.getElementById(id);
-      if (element) observer.observe(element);
+      const section = document.getElementById(id);
+      if (section) observer.observe(section);
     });
-    return () => observer.disconnect();
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      observer.disconnect();
+    };
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
-    if (open) menuRef.current?.querySelector<HTMLAnchorElement>("a")?.focus();
-    const onKey = (event: KeyboardEvent) => event.key === "Escape" && setOpen(false);
-    window.addEventListener("keydown", onKey);
-    return () => {
-      document.body.style.overflow = "";
-      window.removeEventListener("keydown", onKey);
-    };
-  }, [open]);
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [menuOpen]);
+
+  const copyEmail = async () => {
+    await navigator.clipboard.writeText("meramiz@gmail.com");
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1600);
+  };
 
   return (
-    <header className="site-header">
-      <a className="brand" href="#hero" aria-label="Rameez Majeed, home">
-        <span className="brand__mark">RM</span>
-        <span className="brand__name">Rameez<br />Majeed</span>
-      </a>
-      <nav className="desktop-nav" aria-label="Primary navigation">
-        {navItems.slice(0, 5).map(([id, label]) => (
-          <a className={active === id ? "active" : ""} href={`#${id}`} key={id}>{label}</a>
-        ))}
-      </nav>
-      <div className="header-actions">
-        <button className="key-hint" type="button" onClick={() => window.dispatchEvent(new Event("open-command"))}>
-          Quick jump <kbd>⌘K</kbd>
-        </button>
-        <a className="header-cta" href="#contact">Let’s talk <span>↗</span></a>
-        <button className="menu-toggle" type="button" aria-label="Open navigation" aria-expanded={open} onClick={() => setOpen(true)}>
-          <Menu aria-hidden="true" />
-        </button>
-      </div>
-      {open && (
-        <div className="mobile-menu" ref={menuRef} role="dialog" aria-modal="true" aria-label="Site navigation">
-          <button type="button" aria-label="Close navigation" onClick={() => setOpen(false)}><X /></button>
-          <nav>
-            {navItems.map(([id, label], index) => (
-              <a href={`#${id}`} onClick={() => setOpen(false)} key={id}><span>0{index + 1}</span>{label}</a>
-            ))}
-          </nav>
-          <p>Liverpool, UK · Available for select projects</p>
+    <>
+      <aside className={`side-rail ${visible ? "side-rail--visible" : ""}`} aria-label="Portfolio navigation">
+        <div className="rail-card rail-intro">
+          <div className="rail-brand-row">
+            <a className="rail-brand" href="#hero">RM<sup>®</sup></a>
+            <div className="rail-socials"><a href="https://linkedin.com/in/rameez-majeed" target="_blank" rel="noreferrer">in</a><a href="mailto:meramiz@gmail.com">@</a></div>
+          </div>
+          <p>Connecting campaign strategy, technical delivery and data into marketing systems that keep creating value.</p>
+        </div>
+
+        <div className="rail-card rail-stats">
+          <div><strong>46+</strong><span>Live<br />reports</span></div>
+          <div><strong>14+</strong><span>Years of<br />experience</span></div>
+        </div>
+
+        <nav className="rail-card rail-nav">
+          {navItems.map(([id, label], index) => (
+            <a className={active === id ? "active" : ""} href={`#${id}`} key={id}>
+              <span>{navGlyphs[index]}</span>{label}
+            </a>
+          ))}
+        </nav>
+
+        <div className="rail-card rail-marquee"><div>HUBSPOT&nbsp;&nbsp; GA4&nbsp;&nbsp; GSC&nbsp;&nbsp; D365&nbsp;&nbsp; LOOKER&nbsp;&nbsp; AHREFS&nbsp;&nbsp;</div></div>
+        <button className="rail-email" type="button" onClick={copyEmail}><span>{copied ? "Copied" : "meramiz@gmail.com"}</span><b>▣</b></button>
+        <a className="rail-cta" href="mailto:meramiz@gmail.com?subject=Portfolio%20enquiry">Start a project</a>
+      </aside>
+
+      <button className={`mobile-rail-toggle ${visible ? "show" : ""}`} onClick={() => setMenuOpen(true)} aria-label="Open menu">RM <span>MENU</span></button>
+      {menuOpen && (
+        <div className="mobile-rail-menu" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+          <button onClick={() => setMenuOpen(false)} aria-label="Close menu">CLOSE ×</button>
+          <strong>RM<sup>®</sup></strong>
+          <nav>{navItems.map(([id, label], index) => <a key={id} href={`#${id}`} onClick={() => setMenuOpen(false)}><span>0{index + 1}</span>{label}</a>)}</nav>
+          <a href="mailto:meramiz@gmail.com">meramiz@gmail.com ↗</a>
         </div>
       )}
-    </header>
+    </>
   );
 }

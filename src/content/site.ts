@@ -1,12 +1,12 @@
 const publicPath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 export const navItems = [
-  ["about", "About"],
-  ["journey", "Journey"],
-  ["work", "Work"],
-  ["capabilities", "Capabilities"],
+  ["hero", "Home"],
+  ["about", "About me"],
+  ["projects", "Projects"],
+  ["overview", "What you get"],
   ["services", "Services"],
-  ["proof", "Proof"],
+  ["testimonial", "Clients"],
   ["faq", "FAQ"],
 ] as const;
 

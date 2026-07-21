@@ -7,6 +7,7 @@
     "build": "next build",
     "build:pages": "cross-env GITHUB_PAGES=true GITHUB_REPOSITORY=visnet-report/rameez-portfolio next build",
     "deploy": "npm run build:pages && gh-pages -d out -t -m \"Deploy portfolio\"",
+    "preview:pages": "node scripts/preview.mjs",
     "start": "next start",
     "type-check": "tsc --noEmit"
   },
@@ -29,8 +30,6 @@
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "@types/three": "latest",
-    "cross-env": "^10.1.0",
-    "gh-pages": "^6.3.0",
     "cross-env": "^10.1.0",
     "gh-pages": "^6.3.0",
     "typescript": "5.9.3"

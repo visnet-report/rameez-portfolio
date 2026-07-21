@@ -1,33 +1,44 @@
 "use client";
 
 import useEmblaCarousel from "embla-carousel-react";
-import { useCallback } from "react";
-import { ArrowLeft, ArrowRight, Quote } from "lucide-react";
+import { useCallback, useEffect, useState } from "react";
 import { testimonials } from "@/content/site";
-import { SectionHeading } from "@/components/ui/SectionHeading";
 
 export function Testimonials() {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "start" });
+  const [emblaRef, emblaApi] = useEmblaCarousel({ align: "start", loop: true, dragFree: true });
+  const [selected, setSelected] = useState(0);
   const previous = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
   const next = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    const onSelect = () => setSelected(emblaApi.selectedScrollSnap());
+    onSelect();
+    emblaApi.on("select", onSelect);
+    return () => { emblaApi.off("select", onSelect); };
+  }, [emblaApi]);
+
   return (
-    <section className="section proof" id="proof">
-      <SectionHeading eyebrow="07 / Client proof" title={<>The work is stronger<br />with <em>trust</em> in the room.</>} copy="The résumé did not contain approved testimonials, so these cards preserve the intended design and are ready for real quotes." />
-      <div className="testimonial-controls" data-reveal>
-        <p>APPROVED QUOTES NEEDED</p>
-        <div><button onClick={previous} aria-label="Previous testimonial"><ArrowLeft /></button><button onClick={next} aria-label="Next testimonial"><ArrowRight /></button></div>
+    <section className="testimonials rail-layout" id="testimonial">
+      <div className="testimonials-heading">
+        <span>TESTIMONIALS</span>
+        <h2>From People<br />I’ve Worked With</h2>
+        <p>Approved client quotes are still needed. These cards preserve the exact interaction and content structure ready for final proof.</p>
       </div>
-      <div className="embla" ref={emblaRef}>
-        <div className="embla__container">
+      <div className="testimonial-progress"><span style={{ transform: `scaleX(${(selected + 1) / testimonials.length})` }} /></div>
+      <div className="testimonial-viewport" ref={emblaRef}>
+        <div className="testimonial-track">
           {testimonials.map((testimonial, index) => (
-            <article className="testimonial" key={testimonial.person} data-reveal>
-              <Quote aria-hidden="true" />
+            <article className="testimonial-card" key={testimonial.person}>
+              <i>”</i>
+              <h3>{index === 0 ? "Strategic thinking, practical delivery." : index === 1 ? "Makes complex performance clear." : "A builder with a marketing mindset."}</h3>
               <blockquote>{testimonial.quote}</blockquote>
-              <div className="testimonial__person"><span>{testimonial.person.slice(0, 1)}</span><p><strong>{testimonial.person}</strong><small>{testimonial.role}</small></p><i>0{index + 1}</i></div>
+              <div><span>{testimonial.person.charAt(0)}</span><p><strong>{testimonial.person}</strong><small>{testimonial.role}</small></p><b>0{index + 1} / 0{testimonials.length}</b></div>
             </article>
           ))}
         </div>
       </div>
+      <div className="testimonial-actions"><button onClick={previous}>← CLICK</button><span>DRAG</span><button onClick={next}>CLICK →</button></div>
     </section>
   );
 }

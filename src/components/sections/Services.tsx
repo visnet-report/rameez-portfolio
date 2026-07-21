@@ -1,25 +1,26 @@
-import { Check } from "lucide-react";
 import { services } from "@/content/site";
-import { ButtonLink } from "@/components/ui/ButtonLink";
-import { SectionHeading } from "@/components/ui/SectionHeading";
+
+const glyphs = ["⌘", "◩", "♜"];
 
 export function Services() {
   return (
-    <section className="section section--dark services" id="services">
-      <SectionHeading invert eyebrow="06 / Ways to work together" title={<>Choose the shape.<br />Keep the outcome <em>clear.</em></>} copy="Every engagement is scoped to the problem. These starting points make it easier to find the right level of support." />
-      <div className="service-grid">
-        {services.map((service) => (
-          <article className={service.featured ? "featured" : ""} key={service.name} data-reveal>
-            {service.featured && <span className="service-badge">MOST FLEXIBLE</span>}
-            <p className="service-label">{service.label}</p>
-            <h3>{service.name}</h3>
+    <section className="services rail-layout" id="services">
+      <div className="services-heading" data-reveal>
+        <span>SERVICES</span>
+        <h2>Solutions<br />That Deliver</h2>
+        <p>Same attention to detail. The difference is the scale of the problem and the kind of support you need right now.</p>
+      </div>
+      <div className="services-grid">
+        {services.map((service, index) => (
+          <article className="service-card" key={service.name} data-reveal>
+            <header><i>{glyphs[index]}</i><h3>{service.name}</h3></header>
+            <strong>{service.price}</strong>
             <p>{service.text}</p>
-            <ul>{service.features.map((feature) => <li key={feature}><Check size={16} />{feature}</li>)}</ul>
-            <div className="service-bottom"><strong>{service.price}</strong><ButtonLink href="#contact" variant={service.featured ? "dark" : "outline"}>Discuss fit</ButtonLink></div>
+            <ul>{service.features.map((feature) => <li key={feature}><span>○</span>{feature}</li>)}</ul>
+            <footer><span>ⓘ</span> {index === 0 ? "For teams that need continuous improvement and a reliable extension of their capability." : index === 1 ? "For a defined problem that needs evidence, direction and momentum." : "For operational challenges that need a tailored technical solution."}</footer>
           </article>
         ))}
       </div>
-      <p className="service-note">Rates and availability are intentionally left open until real project details are supplied.</p>
     </section>
   );
 }

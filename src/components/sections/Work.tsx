@@ -1,46 +1,26 @@
-"use client";
-
 import Image from "next/image";
-import { useState } from "react";
-import { ArrowUpRight } from "lucide-react";
 import { projects } from "@/content/site";
-import { SectionHeading } from "@/components/ui/SectionHeading";
 
 export function Work() {
-  const [active, setActive] = useState(0);
   return (
-    <section className="section work" id="work">
-      <SectionHeading eyebrow="03 / Selected work" title={<>Useful systems.<br /><em>Visible</em> outcomes.</>} copy="A selection of products, workflows and reporting environments from the intersection of marketing, data and technology." />
-      <div className="work__layout">
-        <div className="work__list">
-          {projects.map((project, index) => (
-            <a
-              className={`project-row ${active === index ? "active" : ""}`}
-              key={project.title}
-              href={project.url}
-              {...(project.url.startsWith("http") ? { target: "_blank", rel: "noreferrer" } : {})}
-              onMouseEnter={() => setActive(index)}
-              onFocus={() => setActive(index)}
-              data-reveal
-            >
-              <span className="project-row__no">{project.no}</span>
-              <div className="project-row__main">
-                <p>{project.client}</p>
-                <h3>{project.title}</h3>
-                <p>{project.description}</p>
-                <ul>{project.tags.map((tag) => <li key={tag}>{tag}</li>)}</ul>
-              </div>
-              <span className="project-row__arrow"><ArrowUpRight /></span>
+    <section className="work rail-layout" id="projects">
+      <div className="work-stage">
+        <div className="work-heading">
+          <p>SELECTED WORK</p>
+          <h2>Built for Marketing,<br />Made to Perform</h2>
+          <p>Campaign systems, reporting environments and practical tools designed to make complex marketing work clearer and more effective.</p>
+        </div>
+
+        <div className="work-track" data-horizontal-track>
+          {projects.map((project) => (
+            <a className="work-card" href={project.url} key={project.title} {...(project.url.startsWith("http") ? { target: "_blank", rel: "noreferrer" } : {})}>
+              <Image src={project.visual} alt={`${project.title} project preview`} fill sizes="380px" />
+              <div className="work-card__top"><span>{project.no}</span><ul>{project.tags.slice(0, 3).map((tag) => <li key={tag}>{tag}</li>)}</ul></div>
+              <div className="work-card__bottom"><h3>{project.title}</h3><p>{project.description}</p><i>↗</i></div>
             </a>
           ))}
+          <div className="work-end-card"><span>05 / 05</span><h3>Have a useful<br />problem?</h3><a href="mailto:meramiz@gmail.com">Let’s talk ↗</a></div>
         </div>
-        <aside className="work__preview" aria-live="polite">
-          <div className="preview-frame">
-            <Image src={projects[active].visual} alt={`${projects[active].title} abstract project preview`} fill sizes="(max-width: 900px) 100vw, 42vw" />
-            <span>PROJECT {projects[active].no} / PREVIEW</span>
-          </div>
-          <p>{projects[active].title} <span>↗</span></p>
-        </aside>
       </div>
     </section>
   );

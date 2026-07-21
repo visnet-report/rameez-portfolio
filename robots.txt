@@ -1,0 +1,4 @@
+User-Agent: *
+Allow: /
+
+Sitemap: https://visnet-report.github.io/rameez-portfolio/sitemap.xml

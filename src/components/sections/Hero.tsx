@@ -24,7 +24,8 @@ export function Hero() {
         </div>
 
         <div className="hero-stats-card hero-stats-card--one">
-          <strong><i>↗</i> 148+</strong><span>SEO &amp; developer<br />tools built</span>
+          <Image className="hero-rm-mark" src={`${basePath}/rm-logo.svg`} alt="" width={68} height={68} aria-hidden="true" />
+          <div className="hero-stat-copy"><strong><i>↗</i> 148+</strong><span>SEO &amp; developer<br />tools built</span></div>
         </div>
         <div className="hero-stats-card hero-stats-card--two">
           <strong>14+</strong><span>Years of<br />experience</span>
@@ -39,7 +40,7 @@ export function Hero() {
           <div><a data-hero-cta href="mailto:meramiz@gmail.com?subject=Portfolio%20enquiry">Start a project</a><a href="#about">About me</a></div>
         </div>
 
-        <p className="hero-identity">The marketing specialist.<br />That&apos;s Rameez.</p>
+        <p className="hero-identity">The digital marketing specialist.<br />That&apos;s Rameez.</p>
         <p className="hero-copy">Working closely with marketing, sales and product teams to connect creative campaigns, technical execution and long-term value.</p>
       </div>
     </section>

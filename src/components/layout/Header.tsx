@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { navItems } from "@/content/site";
 
 const navGlyphs = ["⌂", "◒", "▰", "≋", "ϟ", "♟", "?"];
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 export function Header() {
   const [visible, setVisible] = useState(false);
@@ -46,7 +47,7 @@ export function Header() {
       <aside className={`side-rail ${visible ? "side-rail--visible" : ""}`} data-side-rail aria-label="Portfolio navigation">
         <div className="rail-card rail-intro" data-rail-panel>
           <div className="rail-brand-row">
-            <a className="rail-brand" data-rail-brand href="#hero">RM<sup>®</sup></a>
+            <a className="rail-brand" data-rail-brand href="#hero" aria-label="Rameez Majeed - home"><img src={`${basePath}/rm-logo.svg`} alt="RM" /></a>
             <div className="rail-socials"><a href="https://linkedin.com/in/rameez-majeed" target="_blank" rel="noreferrer">in</a><a href="mailto:meramiz@gmail.com">@</a></div>
           </div>
           <p>Connecting campaign strategy, technical delivery and data into marketing systems that keep creating value.</p>
@@ -70,11 +71,11 @@ export function Header() {
         <a className="rail-cta" data-rail-cta href="mailto:meramiz@gmail.com?subject=Portfolio%20enquiry">Start a project</a>
       </aside>
 
-      <button className={`mobile-rail-toggle ${visible ? "show" : ""}`} onClick={() => setMenuOpen(true)} aria-label="Open menu">RM <span>MENU</span></button>
+      <button className={`mobile-rail-toggle ${visible ? "show" : ""}`} onClick={() => setMenuOpen(true)} aria-label="Open menu"><img src={`${basePath}/rm-logo.svg`} alt="" /> <span>MENU</span></button>
       {menuOpen && (
         <div className="mobile-rail-menu" role="dialog" aria-modal="true" aria-label="Mobile navigation">
           <button onClick={() => setMenuOpen(false)} aria-label="Close menu">CLOSE ×</button>
-          <strong>RM<sup>®</sup></strong>
+          <img className="mobile-rail-menu__logo" src={`${basePath}/rm-logo.svg`} alt="RM" />
           <nav>{navItems.map(([id, label], index) => <a key={id} href={`#${id}`} onClick={() => setMenuOpen(false)}><span>0{index + 1}</span>{label}</a>)}</nav>
           <a href="mailto:meramiz@gmail.com">meramiz@gmail.com ↗</a>
         </div>

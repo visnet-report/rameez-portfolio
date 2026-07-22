@@ -1,5 +1,5 @@
-import Image from "next/image";
 import { navItems } from "@/content/site";
+import { HeroParticlePortrait } from "@/components/three/HeroParticlePortrait";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
@@ -19,7 +19,7 @@ export function Hero() {
         </nav>
 
         <div className="hero-portrait" data-hero-portrait>
-          <Image src={`${basePath}/hero-figure.png`} alt="Editorial silhouette representing Rameez Majeed" fill priority sizes="(max-width: 700px) 110vw, 68vw" />
+          <HeroParticlePortrait src={`${basePath}/hero-figure.png`} />
           <span>RAMEEZ MAJEED / LIVERPOOL</span>
         </div>
 

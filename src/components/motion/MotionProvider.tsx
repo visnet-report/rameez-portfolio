@@ -100,10 +100,10 @@ export function MotionProvider({ children }: { children: React.ReactNode }) {
         }
 
         heroTimeline
-          .to("[data-hero-portrait]", { scale: 1.45, filter: "blur(22px)", yPercent: 18, opacity: 0.06, duration: 0.84, ease: "power1.in" }, 0.06)
+          .to("[data-hero-portrait]", { scale: 1.08, yPercent: -3, duration: 0.84, ease: "none" }, 0.06)
           .to(".hero-title h1", { yPercent: -165, scale: 0.82, opacity: 0.04, duration: 0.48 }, 0.38)
           .to(".hero-title > div > a:last-child", { yPercent: 90, opacity: 0, duration: 0.46 }, 0.24)
-          .to(".hero-traits", { xPercent: -48, yPercent: 45, scale: 0.62, opacity: 0, duration: 0.56 }, 0.18)
+          .to(".hero-traits", { yPercent: -25, scale: 0.72, opacity: 0, duration: 0.42 }, 0.12)
           .to(".hero-topline, .hero-identity, .hero-copy", { opacity: 0, duration: 0.28 }, 0.06)
           .to(".hero-nav", { "--divider-opacity": 0, duration: 0.22 }, 0.16);
 

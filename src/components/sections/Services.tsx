@@ -5,11 +5,10 @@ import { skillDisciplines } from "@/content/site";
 import { SkillsScene } from "@/components/three/SkillsScene";
 
 export function Skills() {
-  const [active, setActive] = useState(skillDisciplines.length - 1);
+  const defaultDiscipline = skillDisciplines.length - 1;
+  const [active, setActive] = useState(defaultDiscipline);
   const discipline = skillDisciplines[active];
-  const orbitDisciplines = skillDisciplines
-    .map((item, index) => ({ item, index }))
-    .filter(({ index }) => index !== active);
+  const orbitDisciplines = skillDisciplines.slice(0, -1);
 
   return (
     <section className="skills rail-layout" id="skills">
@@ -32,15 +31,16 @@ export function Skills() {
           })}
         </svg>
         <div className="skills-scene" aria-hidden="true"><SkillsScene /></div>
-        <div className="skills-orbit-nav" role="tablist" aria-label="Skill disciplines">
-          {orbitDisciplines.map(({ item, index }, slot) => (
+        <div className="skills-orbit-nav" role="group" aria-label="Skill disciplines">
+          {orbitDisciplines.map((item, index) => (
             <button
-              className={`skills-orbit-button skills-orbit-button--${slot + 1}`}
+              className={`skills-orbit-button skills-orbit-button--${index + 1}`}
               type="button"
-              role="tab"
-              aria-selected="false"
-              onClick={() => setActive(index)}
+              aria-controls="skills-active-panel"
+              aria-pressed={active === index}
               onMouseEnter={() => setActive(index)}
+              onFocus={() => setActive(index)}
+              onClick={() => setActive(index)}
               key={item.name}
             >
               <i>{item.glyph}</i><span>{item.name}</span>
@@ -48,7 +48,7 @@ export function Skills() {
           ))}
         </div>
 
-        <article className="skills-plane" key={discipline.name}>
+        <article className="skills-plane" id="skills-active-panel" key={discipline.name}>
           <header>
             <i>{discipline.glyph}</i>
             <h3>{discipline.name}</h3>

@@ -11,7 +11,7 @@ export const navItems = [
 ] as const;
 
 export const milestones = [
-  { year: "2011", role: "Digital foundations", company: "C-Cubed Solutions", text: "Started hands-on across SEO, paid search, social, email and websites — learning the discipline of testing and continuous improvement." },
+  { year: "2011", role: "Digital foundations", company: "C-Cubed Solutions", text: "Started hands-on across SEO, paid search, social, email and websites - learning the discipline of testing and continuous improvement." },
   { year: "2015", role: "B2B lead generation", company: "Organize Technologies", text: "Led search, social, email and web campaigns, combining competitor research, content planning and conversion optimisation." },
   { year: "2017", role: "Acquisition leadership", company: "Muscat Higher Education", text: "Directed digital acquisition for diverse student audiences and improved enquiry generation through joined-up campaign analytics." },
   { year: "2021", role: "Multi-channel delivery", company: "MESDAC Solutions", text: "Coordinated designers, developers and client stakeholders to deliver campaigns across SEO, PPC, email, content, social and web." },
@@ -68,7 +68,7 @@ export const projects = [
 ];
 
 export const capabilities = [
-  { no: "01", title: "Integrated campaigns", text: "PPC, SEO, email, web, social and content shaped around one commercial outcome — not isolated channel activity." },
+  { no: "01", title: "Integrated campaigns", text: "PPC, SEO, email, web, social and content shaped around one commercial outcome - not isolated channel activity." },
   { no: "02", title: "Measurement & attribution", text: "GA4, Looker Studio, CRM and advertising data connected into reporting stakeholders can actually use." },
   { no: "03", title: "SEO & AI search", text: "Evidence-led search strategy that connects technical health, content opportunity, user intent and emerging AI discovery." },
   { no: "04", title: "Marketing automation", text: "Lifecycle journeys, AI-assisted content operations and reliable API workflows that reduce repetitive work." },
@@ -83,15 +83,15 @@ export const services = [
 ];
 
 export const testimonials = [
-  { quote: "Placeholder — add an approved client quote about Rameez’s ability to connect campaign thinking with practical delivery.", person: "Client name", role: "Role · Company" },
-  { quote: "Placeholder — add an approved collaborator quote about reporting clarity, stakeholder communication and measurable outcomes.", person: "Collaborator name", role: "Role · Company" },
-  { quote: "Placeholder — add an approved testimonial about automation, data quality or the impact of a marketing system.", person: "Stakeholder name", role: "Role · Company" },
+  { quote: "Placeholder - add an approved client quote about Rameez’s ability to connect campaign thinking with practical delivery.", person: "Client name", role: "Role · Company" },
+  { quote: "Placeholder - add an approved collaborator quote about reporting clarity, stakeholder communication and measurable outcomes.", person: "Collaborator name", role: "Role · Company" },
+  { quote: "Placeholder - add an approved testimonial about automation, data quality or the impact of a marketing system.", person: "Stakeholder name", role: "Role · Company" },
 ];
 
 export const faqs = [
   ["What kinds of projects are the best fit?", "Integrated campaign programmes, SEO or paid-media performance work, attribution/reporting systems and marketing workflows that need both strategic and technical thinking."],
   ["Do you work as a strategist or a hands-on specialist?", "Both. I can translate business goals into a plan, then work directly in the platforms, data and delivery details needed to move it forward."],
-  ["Which platforms do you use?", "HubSpot, Dynamics 365, Google Ads, Microsoft Ads, LinkedIn Ads, GA4, Search Console, Looker Studio, BigQuery, GTM, Clarity, Ahrefs and DataForSEO — plus Next.js, TypeScript and Supabase for custom builds."],
+  ["Which platforms do you use?", "HubSpot, Dynamics 365, Google Ads, Microsoft Ads, LinkedIn Ads, GA4, Search Console, Looker Studio, BigQuery, GTM, Clarity, Ahrefs and DataForSEO - plus Next.js, TypeScript and Supabase for custom builds."],
   ["Can you work with an existing team or agency?", "Yes. Much of my work involves aligning marketing, sales, product, IT, agencies and senior stakeholders around clear requirements and measurable priorities."],
   ["Do you support international campaigns?", "Yes. I currently support activity tailored to UK, US and Australian markets and have worked with varied audience needs throughout my career."],
   ["How do projects usually start?", "With a focused conversation about the commercial objective, current data, delivery constraints and the decision the work needs to improve."],

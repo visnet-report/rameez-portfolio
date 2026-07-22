@@ -101,7 +101,7 @@ export function MotionProvider({ children }: { children: React.ReactNode }) {
 
         heroTimeline
           .to("[data-hero-portrait]", { scale: 1.45, filter: "blur(22px)", yPercent: 18, opacity: 0.06, duration: 0.84, ease: "power1.in" }, 0.06)
-          .to(".hero-title h1", { yPercent: -165, scale: 0.82, opacity: 0.04, duration: 0.74 }, 0.12)
+          .to(".hero-title h1", { yPercent: -165, scale: 0.82, opacity: 0.04, duration: 0.48 }, 0.38)
           .to(".hero-title > div > a:last-child", { yPercent: 90, opacity: 0, duration: 0.46 }, 0.24)
           .to(".hero-traits", { xPercent: -48, yPercent: 45, scale: 0.62, opacity: 0, duration: 0.56 }, 0.18)
           .to(".hero-topline, .hero-identity, .hero-copy", { opacity: 0, duration: 0.28 }, 0.06)
@@ -111,7 +111,12 @@ export function MotionProvider({ children }: { children: React.ReactNode }) {
           gsap.fromTo(element, { opacity: 0, y: 55 }, { opacity: 1, y: 0, duration: 0.9, ease: "power3.out", scrollTrigger: { trigger: element, start: "top 88%", once: true } });
         });
 
-        gsap.fromTo(".journey-path path", { strokeDasharray: 3500, strokeDashoffset: 3500 }, { strokeDashoffset: 0, ease: "none", scrollTrigger: { trigger: ".journey-map", start: "top 75%", end: "bottom 35%", scrub: true } });
+        const journeyLine = document.querySelector<SVGPathElement>(".journey-path__progress");
+        if (journeyLine) {
+          const lineLength = journeyLine.getTotalLength();
+          gsap.fromTo(journeyLine, { strokeDasharray: lineLength, strokeDashoffset: lineLength }, { strokeDashoffset: 0, ease: "none", scrollTrigger: { trigger: ".journey-map", start: "top 88%", end: "bottom 18%", scrub: true } });
+          gsap.fromTo(".journey-path circle", { opacity: 0, scale: 0 }, { opacity: 1, scale: 1, transformOrigin: "center", stagger: 0.15, ease: "back.out(1.5)", scrollTrigger: { trigger: ".journey-map", start: "top 82%", end: "bottom 22%", scrub: true } });
+        }
 
         const work = document.querySelector<HTMLElement>(".work");
         const track = document.querySelector<HTMLElement>("[data-horizontal-track]");

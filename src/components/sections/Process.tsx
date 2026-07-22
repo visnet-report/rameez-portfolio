@@ -4,7 +4,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 const steps = [
   { no: "01", icon: Crosshair, title: "Find the real objective", text: "Clarify the audience, business outcome, current evidence and the decision the work needs to improve." },
   { no: "02", icon: Route, title: "Map the opportunity", text: "Connect channels, content, data and constraints into a focused plan with a sensible order of operations." },
-  { no: "03", icon: Boxes, title: "Build and activate", text: "Create the campaign, workflow, report or product — with stakeholders close enough to keep delivery grounded." },
+  { no: "03", icon: Boxes, title: "Build and activate", text: "Create the campaign, workflow, report or product - with stakeholders close enough to keep delivery grounded." },
   { no: "04", icon: BarChart3, title: "Measure and sharpen", text: "Read the signals, improve the system and leave behind reporting that makes the next decision easier." },
 ];
 

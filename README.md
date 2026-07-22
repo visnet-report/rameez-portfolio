@@ -1,4 +1,4 @@
-# Rameez Majeed — Portfolio
+# Rameez Majeed - Portfolio
 
 A premium one-page portfolio for a digital marketing specialist and marketing-systems builder. The content was sourced from Rameez Majeed's résumé; the structure and interaction direction follow a custom rebuild brief without copying the reference brand or content. Those private source files are intentionally excluded from the public repository.
 

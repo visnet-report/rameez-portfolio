@@ -3,10 +3,42 @@
 import { useState } from "react";
 import { capabilities } from "@/content/site";
 
-const glyphs = ["◎", "⌁", "▦", "⚡", "◇"];
+const glyphs = ["◎", "▥", "</>", "ϟ", "◇"];
 
 export function Capabilities() {
-  const [active, setActive] = useState(1);
+  const [active, setActive] = useState<number | null>(null);
+
+  const capabilityToken = (index: number) => {
+    const item = capabilities[index];
+    const isActive = active === index;
+
+    return (
+      <span
+        className={`capability-inline capability-inline--${index + 1} ${isActive ? "active" : ""}`}
+        data-capability-card
+        onMouseEnter={() => setActive(index)}
+        onMouseLeave={() => setActive(null)}
+        key={item.no}
+      >
+        <button
+          className="capability-token"
+          type="button"
+          onClick={() => setActive(isActive ? null : index)}
+          onFocus={() => setActive(index)}
+          onBlur={() => setActive(null)}
+          aria-expanded={isActive}
+          aria-label={`${item.title}: ${isActive ? "close details" : "show details"}`}
+        >
+          <i>{glyphs[index]}</i><b>{isActive ? "−" : "+"}</b>
+        </button>
+        <span className="capability-inline__panel" role="tooltip">
+          <small>{item.no}</small>
+          <strong>{item.title}</strong>
+          <span>{item.text}</span>
+        </span>
+      </span>
+    );
+  };
 
   return (
     <section className="capabilities rail-layout" id="overview">
@@ -14,22 +46,9 @@ export function Capabilities() {
         <div className="capabilities-title" aria-hidden="true">What<br />You Get?</div>
         <div className="capabilities-copy">
           <span>CAPABILITIES OVERVIEW</span>
-          <p>Strategy, precision and technical delivery combined — turning your vision into a digital experience that feels effortless.</p>
-        </div>
-        <div className="capability-cloud" aria-label="Interactive capability details">
-          {capabilities.slice(0, 5).map((item, index) => {
-            const isActive = active === index;
-            return (
-              <article className={`capability-pop capability-pop--${index + 1} ${isActive ? "active" : ""}`} key={item.no} data-capability-card>
-                <button type="button" onClick={() => setActive(index)} aria-expanded={isActive}>
-                  <i>{glyphs[index]}</i><span>{item.title}</span><b>{isActive ? "−" : "+"}</b>
-                </button>
-                <div className="capability-pop__detail">
-                  <span>{item.no}</span><h3>{item.title}</h3><p>{item.text}</p>
-                </div>
-              </article>
-            );
-          })}
+          <p className="capabilities-statement">
+            Strategy, {capabilityToken(0)} precision, {capabilityToken(1)} and technical {capabilityToken(2)} delivery combined - turning {capabilityToken(3)} your vision into a powerful digital {capabilityToken(4)} experience that feels effortless.
+          </p>
         </div>
       </div>
     </section>

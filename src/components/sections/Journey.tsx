@@ -26,9 +26,15 @@ export function Journey() {
       </div>
 
       <div className="journey-map">
-        <svg className="journey-path" viewBox="0 0 1000 2850" preserveAspectRatio="none" aria-hidden="true">
-          <path d="M990 0 C930 210 710 210 710 420 C710 650 980 620 940 880 C900 1110 340 970 310 1290 C285 1540 810 1430 745 1750 C700 1990 120 1870 105 2220 C98 2470 490 2500 560 2850" />
-          <circle cx="710" cy="420" r="9" /><circle cx="940" cy="880" r="9" /><circle cx="310" cy="1290" r="9" /><circle cx="745" cy="1750" r="9" /><circle cx="105" cy="2220" r="9" />
+        <svg className="journey-path" viewBox="0 0 1000 3200" preserveAspectRatio="none" aria-hidden="true">
+          <path className="journey-path__track" d="M920 0 C875 130 700 115 650 245 C585 420 400 470 390 690 C380 890 680 930 650 1170 C620 1400 355 1430 390 1700 C420 1935 700 1950 650 2200 C600 2450 330 2490 400 2760 C450 2950 610 3040 520 3200" />
+          <path className="journey-path__progress" d="M920 0 C875 130 700 115 650 245 C585 420 400 470 390 690 C380 890 680 930 650 1170 C620 1400 355 1430 390 1700 C420 1935 700 1950 650 2200 C600 2450 330 2490 400 2760 C450 2950 610 3040 520 3200" />
+          <circle cx="650" cy="245" r="9" />
+          <circle cx="390" cy="690" r="9" />
+          <circle cx="650" cy="1170" r="9" />
+          <circle cx="390" cy="1700" r="9" />
+          <circle cx="650" cy="2200" r="9" />
+          <circle cx="400" cy="2760" r="9" />
         </svg>
 
         {milestones.map((item, index) => (

@@ -4,7 +4,7 @@ import "@fontsource-variable/space-grotesk";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Rameez Majeed — Digital Marketing & Marketing Engineering",
+  title: "Rameez Majeed - Digital Marketing & Marketing Engineering",
   description:
     "Digital marketing specialist combining 14+ years of campaign leadership with analytics, attribution, automation and product-minded marketing technology.",
   keywords: [
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     "Liverpool",
   ],
   openGraph: {
-    title: "Rameez Majeed — Digital Marketing, engineered to perform",
+    title: "Rameez Majeed - Digital Marketing, engineered to perform",
     description:
       "Campaign strategy, paid media, SEO, analytics, automation and the systems that connect them.",
     type: "website",

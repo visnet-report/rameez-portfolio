@@ -12,7 +12,7 @@ export function Header() {
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setVisible(window.scrollY > window.innerHeight * 1.05);
+    const onScroll = () => setVisible(window.scrollY > window.innerHeight * 0.8);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
 
@@ -43,31 +43,31 @@ export function Header() {
 
   return (
     <>
-      <aside className={`side-rail ${visible ? "side-rail--visible" : ""}`} aria-label="Portfolio navigation">
-        <div className="rail-card rail-intro">
+      <aside className={`side-rail ${visible ? "side-rail--visible" : ""}`} data-side-rail aria-label="Portfolio navigation">
+        <div className="rail-card rail-intro" data-rail-panel>
           <div className="rail-brand-row">
-            <a className="rail-brand" href="#hero">RM<sup>®</sup></a>
+            <a className="rail-brand" data-rail-brand href="#hero">RM<sup>®</sup></a>
             <div className="rail-socials"><a href="https://linkedin.com/in/rameez-majeed" target="_blank" rel="noreferrer">in</a><a href="mailto:meramiz@gmail.com">@</a></div>
           </div>
           <p>Connecting campaign strategy, technical delivery and data into marketing systems that keep creating value.</p>
         </div>
 
-        <div className="rail-card rail-stats">
-          <div><strong>46+</strong><span>Live<br />reports</span></div>
-          <div><strong>14+</strong><span>Years of<br />experience</span></div>
+        <div className="rail-card rail-stats" data-rail-panel>
+          <div data-rail-stat="tools"><strong>148+</strong><span>SEO tools<br />built</span></div>
+          <div data-rail-stat="experience"><strong>14+</strong><span>Years of<br />experience</span></div>
         </div>
 
-        <nav className="rail-card rail-nav">
+        <nav className="rail-card rail-nav" data-rail-panel>
           {navItems.map(([id, label], index) => (
-            <a className={active === id ? "active" : ""} href={`#${id}`} key={id}>
+            <a className={active === id ? "active" : ""} data-rail-nav-item={id} href={`#${id}`} key={id}>
               <span>{navGlyphs[index]}</span>{label}
             </a>
           ))}
         </nav>
 
-        <div className="rail-card rail-marquee"><div>HUBSPOT&nbsp;&nbsp; GA4&nbsp;&nbsp; GSC&nbsp;&nbsp; D365&nbsp;&nbsp; LOOKER&nbsp;&nbsp; AHREFS&nbsp;&nbsp;</div></div>
-        <button className="rail-email" type="button" onClick={copyEmail}><span>{copied ? "Copied" : "meramiz@gmail.com"}</span><b>▣</b></button>
-        <a className="rail-cta" href="mailto:meramiz@gmail.com?subject=Portfolio%20enquiry">Start a project</a>
+        <div className="rail-card rail-marquee" data-rail-panel><div>HUBSPOT&nbsp;&nbsp; GA4&nbsp;&nbsp; GSC&nbsp;&nbsp; D365&nbsp;&nbsp; LOOKER&nbsp;&nbsp; AHREFS&nbsp;&nbsp;</div></div>
+        <button className="rail-email" data-rail-panel type="button" onClick={copyEmail}><span>{copied ? "Copied" : "meramiz@gmail.com"}</span><b>▣</b></button>
+        <a className="rail-cta" data-rail-cta href="mailto:meramiz@gmail.com?subject=Portfolio%20enquiry">Start a project</a>
       </aside>
 
       <button className={`mobile-rail-toggle ${visible ? "show" : ""}`} onClick={() => setMenuOpen(true)} aria-label="Open menu">RM <span>MENU</span></button>

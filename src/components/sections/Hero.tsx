@@ -7,15 +7,15 @@ export function Hero() {
   return (
     <section className="hero" id="hero">
       <div className="hero-stage">
-        <div className="hero-word" aria-hidden="true">RAMEEZ</div>
+        <div className="hero-word" data-hero-brand aria-hidden="true">RAMEEZ<sup>®</sup></div>
         <div className="hero-topline">
           <p>THE MARKETER WHO<br />BUILDS THE SYSTEM.</p>
           <div><a href="https://linkedin.com/in/rameez-majeed" target="_blank" rel="noreferrer">LINKEDIN ↗</a><a href="mailto:meramiz@gmail.com">EMAIL ↗</a></div>
         </div>
 
         <nav className="hero-nav" aria-label="Primary navigation">
-          <div>{navItems.slice(0, 3).map(([id, label]) => <a href={`#${id}`} key={id}>{label}</a>)}</div>
-          <div>{navItems.slice(3).map(([id, label]) => <a href={`#${id}`} key={id}>{label}</a>)}</div>
+          <div>{navItems.slice(0, 3).map(([id, label]) => <a data-hero-nav-item={id} href={`#${id}`} key={id}>{label}</a>)}</div>
+          <div>{navItems.slice(3).map(([id, label]) => <a data-hero-nav-item={id} href={`#${id}`} key={id}>{label}</a>)}</div>
         </nav>
 
         <div className="hero-portrait" data-hero-portrait>
@@ -36,7 +36,7 @@ export function Hero() {
 
         <div className="hero-title">
           <h1>Digital,<br />Applied<br />Differently.</h1>
-          <div><a href="mailto:meramiz@gmail.com?subject=Portfolio%20enquiry">Start a project</a><a href="#about">About me</a></div>
+          <div><a data-hero-cta href="mailto:meramiz@gmail.com?subject=Portfolio%20enquiry">Start a project</a><a href="#about">About me</a></div>
         </div>
 
         <p className="hero-identity">The marketing specialist.<br />That&apos;s Rameez.</p>

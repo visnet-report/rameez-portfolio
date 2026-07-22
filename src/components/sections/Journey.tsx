@@ -27,7 +27,6 @@ export function Journey() {
 
       <div className="journey-map">
         <svg className="journey-path" viewBox="0 0 1000 3200" preserveAspectRatio="none" aria-hidden="true">
-          <path className="journey-path__track" d="M920 0 C875 130 700 115 650 245 C585 420 400 470 390 690 C380 890 680 930 650 1170 C620 1400 355 1430 390 1700 C420 1935 700 1950 650 2200 C600 2450 330 2490 400 2760 C450 2950 610 3040 520 3200" />
           <path className="journey-path__progress" d="M920 0 C875 130 700 115 650 245 C585 420 400 470 390 690 C380 890 680 930 650 1170 C620 1400 355 1430 390 1700 C420 1935 700 1950 650 2200 C600 2450 330 2490 400 2760 C450 2950 610 3040 520 3200" />
           <circle cx="650" cy="245" r="9" />
           <circle cx="390" cy="690" r="9" />

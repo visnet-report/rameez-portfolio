@@ -6,7 +6,7 @@ import { capabilities } from "@/content/site";
 const glyphs = ["◎", "▥", "</>", "ϟ", "◇"];
 
 export function Capabilities() {
-  const [active, setActive] = useState<number | null>(null);
+  const [active, setActive] = useState(0);
 
   const capabilityToken = (index: number) => {
     const item = capabilities[index];
@@ -17,25 +17,19 @@ export function Capabilities() {
         className={`capability-inline capability-inline--${index + 1} ${isActive ? "active" : ""}`}
         data-capability-card
         onMouseEnter={() => setActive(index)}
-        onMouseLeave={() => setActive(null)}
         key={item.no}
       >
         <button
           className="capability-token"
           type="button"
-          onClick={() => setActive(isActive ? null : index)}
+          onClick={() => setActive(index)}
           onFocus={() => setActive(index)}
-          onBlur={() => setActive(null)}
           aria-expanded={isActive}
-          aria-label={`${item.title}: ${isActive ? "close details" : "show details"}`}
+          aria-controls="capability-detail"
+          aria-label={`Show ${item.title} details`}
         >
           <i>{glyphs[index]}</i><b>{isActive ? "−" : "+"}</b>
         </button>
-        <span className="capability-inline__panel" role="tooltip">
-          <small>{item.no}</small>
-          <strong>{item.title}</strong>
-          <span>{item.text}</span>
-        </span>
       </span>
     );
   };
@@ -49,6 +43,14 @@ export function Capabilities() {
           <p className="capabilities-statement">
             Strategy, {capabilityToken(0)} precision, {capabilityToken(1)} and technical {capabilityToken(2)} delivery combined - turning {capabilityToken(3)} your vision into a powerful digital {capabilityToken(4)} experience that feels effortless.
           </p>
+          <aside className="capability-detail" id="capability-detail" aria-live="polite">
+            <span className="capability-detail__icon" aria-hidden="true">{glyphs[active]}</span>
+            <div>
+              <small>{capabilities[active].no} / CAPABILITY</small>
+              <h3>{capabilities[active].title}</h3>
+              <p>{capabilities[active].text}</p>
+            </div>
+          </aside>
         </div>
       </div>
     </section>

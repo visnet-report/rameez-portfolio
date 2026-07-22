@@ -114,19 +114,23 @@ export function MotionProvider({ children }: { children: React.ReactNode }) {
         const journeyLine = document.querySelector<SVGPathElement>(".journey-path__progress");
         if (journeyLine) {
           const lineLength = journeyLine.getTotalLength();
-          gsap.fromTo(journeyLine, { strokeDasharray: lineLength, strokeDashoffset: lineLength }, { strokeDashoffset: 0, ease: "none", scrollTrigger: { trigger: ".journey-map", start: "top 88%", end: "bottom 18%", scrub: true } });
-          gsap.fromTo(".journey-path circle", { opacity: 0, scale: 0 }, { opacity: 1, scale: 1, transformOrigin: "center", stagger: 0.15, ease: "back.out(1.5)", scrollTrigger: { trigger: ".journey-map", start: "top 82%", end: "bottom 22%", scrub: true } });
+          const journeyTimeline = gsap.timeline({
+            scrollTrigger: {
+              trigger: ".journey-map",
+              start: "top center",
+              end: "bottom center",
+              scrub: true,
+              invalidateOnRefresh: true,
+            },
+          });
+          journeyTimeline.fromTo(journeyLine, { strokeDasharray: lineLength, strokeDashoffset: lineLength }, { strokeDashoffset: 0, duration: 1, ease: "none" }, 0);
+          document.querySelectorAll<SVGCircleElement>(".journey-path circle").forEach((circle) => {
+            const position = Number(circle.getAttribute("cy")) / 3200;
+            journeyTimeline.fromTo(circle, { opacity: 0, scale: 0 }, { opacity: 1, scale: 1, duration: 0.035, transformOrigin: "center", ease: "none" }, position);
+          });
         }
 
-        const work = document.querySelector<HTMLElement>(".work");
-        const track = document.querySelector<HTMLElement>("[data-horizontal-track]");
-        if (work && track && window.innerWidth > 760) {
-          const distance = () => Math.max(0, track.scrollWidth - window.innerWidth + (window.innerWidth > 900 ? 250 : 32));
-          gsap.to(track, { x: () => -distance(), ease: "none", scrollTrigger: { trigger: work, start: "top top", end: "bottom bottom", scrub: 1, invalidateOnRefresh: true } });
-        }
-
-        gsap.fromTo("[data-capability-card]", { opacity: 0, scale: 0.72, y: 70 }, { opacity: 1, scale: 1, y: 0, stagger: 0.12, ease: "back.out(1.4)", scrollTrigger: { trigger: ".capabilities", start: "top 65%", end: "top 15%", scrub: 1 } });
-        gsap.to(".capabilities-copy", { yPercent: -10, scale: 1.035, ease: "none", scrollTrigger: { trigger: ".capabilities", start: "top top", end: "bottom bottom", scrub: 1 } });
+        gsap.fromTo("[data-capability-card]", { opacity: 0, scale: 0.82, y: 30 }, { opacity: 1, scale: 1, y: 0, stagger: 0.08, duration: 0.55, ease: "back.out(1.3)", scrollTrigger: { trigger: ".capabilities-copy", start: "top 78%", once: true } });
 
         ScrollTrigger.refresh();
       });

@@ -2,7 +2,7 @@ export function CTA() {
   return (
     <section className="cta rail-layout" id="contact">
       <div className="cta-copy" data-reveal>
-        <h2>Transform Your<br />Marketing<br />Operating System</h2>
+        <h2><span>Transform Your</span><span>Marketing Operating System</span></h2>
         <p>Every marketing function has room to improve. Get a clear view of what works, what slows the team down and where a more connected setup can create value.</p>
       </div>
       <div className="cta-browser" aria-hidden="true">

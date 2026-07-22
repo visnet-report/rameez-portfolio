@@ -3,57 +3,55 @@
 import { useState } from "react";
 import { capabilities } from "@/content/site";
 
-const glyphs = ["◉", "▥", "</>", "ϟ", "◇"];
+const glyphs = ["◎", "▥", "⌁", "ϟ", "◇"];
 
 export function Capabilities() {
-  const [active, setActive] = useState<number | null>(null);
+  const [active, setActive] = useState(0);
+  const item = capabilities[active];
 
-  const capabilityToken = (index: number) => {
-    const item = capabilities[index];
-    const isActive = active === index;
-    const detailId = `capability-detail-${index}`;
-
-    return (
-      <span
-        className={`capability-inline capability-inline--${index + 1} ${isActive ? "active" : ""}`}
-        data-capability-card
-        onMouseEnter={() => setActive(index)}
-        onMouseLeave={() => setActive(null)}
-        key={item.no}
-      >
-        <button
-          className="capability-token"
-          type="button"
-          onClick={() => setActive(isActive ? null : index)}
-          onFocus={() => setActive(index)}
-          aria-expanded={isActive}
-          aria-controls={detailId}
-          aria-label={`${isActive ? "Hide" : "Show"} ${item.title} details`}
-        >
-          <i>{glyphs[index]}</i><b>{isActive ? "−" : "+"}</b>
-        </button>
-        <span className="capability-popover" id={detailId} role="tooltip" aria-hidden={!isActive}>
-          <i className="capability-popover__icon" aria-hidden="true">{glyphs[index]}</i>
-          <span className="capability-popover__copy">
-            <small>{item.no} / CAPABILITY</small>
-            <strong>{item.title}</strong>
-            <span>{item.text}</span>
-          </span>
-        </span>
-      </span>
-    );
-  };
+  const token = (index: number, label: string) => (
+    <button
+      key={capabilities[index].no}
+      className={`capability-token ${active === index ? "active" : ""}`}
+      type="button"
+      onClick={() => setActive(index)}
+      onMouseEnter={() => setActive(index)}
+      onFocus={() => setActive(index)}
+      aria-label={`Show ${capabilities[index].title}`}
+      aria-pressed={active === index}
+      data-capability-card
+    >
+      <i aria-hidden="true">{glyphs[index]}</i>
+      <span className="sr-only">{label}</span>
+    </button>
+  );
 
   return (
     <section className="capabilities rail-layout" id="overview">
       <div className="capabilities-stage">
-        <div className="capabilities-title" aria-hidden="true">What<br />You Get?</div>
+        <div className="capabilities-title" aria-hidden="true">What You Get?</div>
         <div className="capabilities-copy">
           <span>CAPABILITIES OVERVIEW</span>
           <p className="capabilities-statement">
-            Strategy, {capabilityToken(0)} precision, {capabilityToken(1)} and technical {capabilityToken(2)} delivery combined - turning {capabilityToken(3)} your vision into a powerful digital {capabilityToken(4)} experience that feels effortless.
+            I partner with ambitious teams to shape strategic {token(0, "campaign systems")} campaign systems,
+            measurable {token(1, "measurement")} growth, intelligent {token(2, "search")} search,
+            reliable {token(3, "automation")} automation and decision-ready {token(4, "data quality")} data.
           </p>
         </div>
+
+        <aside className="capability-panel" aria-live="polite">
+          <div className="capability-panel__connector" aria-hidden="true" />
+          <span className="capability-panel__icon" aria-hidden="true">{glyphs[active]}</span>
+          <small>{item.no} / CAPABILITY</small>
+          <h3>{item.title}</h3>
+          <p>{item.text}</p>
+          <ul>{item.points.map((point) => <li key={point}><i>✓</i>{point}</li>)}</ul>
+          <div className="capability-panel__pager">
+            {capabilities.map((capability, index) => (
+              <button key={capability.no} type="button" onClick={() => setActive(index)} aria-label={`Show ${capability.title}`} className={active === index ? "active" : ""} />
+            ))}
+          </div>
+        </aside>
       </div>
     </section>
   );

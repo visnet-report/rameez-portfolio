@@ -13,21 +13,22 @@ export function Header() {
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setVisible(window.scrollY > window.innerHeight * 0.8);
+    const onScroll = () => {
+      setVisible(window.scrollY > window.innerHeight * 0.8);
+      const marker = window.innerHeight * 0.45;
+      const current = navItems.find(([id]) => {
+        const section = document.getElementById(id);
+        if (!section) return false;
+        const bounds = section.getBoundingClientRect();
+        return bounds.top <= marker && bounds.bottom > marker;
+      });
+      if (current) setActive(current[0]);
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
 
-    const observer = new IntersectionObserver(
-      (entries) => entries.forEach((entry) => entry.isIntersecting && setActive(entry.target.id)),
-      { rootMargin: "-35% 0px -55% 0px" },
-    );
-    navItems.forEach(([id]) => {
-      const section = document.getElementById(id);
-      if (section) observer.observe(section);
-    });
     return () => {
       window.removeEventListener("scroll", onScroll);
-      observer.disconnect();
     };
   }, []);
 
@@ -47,7 +48,7 @@ export function Header() {
       <aside className={`side-rail ${visible ? "side-rail--visible" : ""}`} data-side-rail aria-label="Portfolio navigation">
         <div className="rail-card rail-intro" data-rail-panel>
           <div className="rail-brand-row">
-            <a className="rail-brand" data-rail-brand href="#hero" aria-label="Rameez Majeed - home"><img src={`${basePath}/rm-logo.svg`} alt="RM" /></a>
+            <a className="rail-brand" data-rail-brand href="#hero" aria-label="Rameez Majeed - home"><img src={`${basePath}/rm-logo.png`} alt="RM" /></a>
             <div className="rail-socials"><a href="https://linkedin.com/in/rameez-majeed" target="_blank" rel="noreferrer">in</a><a href="mailto:meramiz@gmail.com">@</a></div>
           </div>
           <p>Connecting campaign strategy, technical delivery and data into marketing systems that keep creating value.</p>
@@ -71,11 +72,11 @@ export function Header() {
         <a className="rail-cta" data-rail-cta href="mailto:meramiz@gmail.com?subject=Portfolio%20enquiry">Start a project</a>
       </aside>
 
-      <button className={`mobile-rail-toggle ${visible ? "show" : ""}`} onClick={() => setMenuOpen(true)} aria-label="Open menu"><img src={`${basePath}/rm-logo.svg`} alt="" /> <span>MENU</span></button>
+      <button className={`mobile-rail-toggle ${visible ? "show" : ""}`} onClick={() => setMenuOpen(true)} aria-label="Open menu"><img src={`${basePath}/rm-logo.png`} alt="" /> <span>MENU</span></button>
       {menuOpen && (
         <div className="mobile-rail-menu" role="dialog" aria-modal="true" aria-label="Mobile navigation">
           <button onClick={() => setMenuOpen(false)} aria-label="Close menu">CLOSE ×</button>
-          <img className="mobile-rail-menu__logo" src={`${basePath}/rm-logo.svg`} alt="RM" />
+          <img className="mobile-rail-menu__logo" src={`${basePath}/rm-logo.png`} alt="RM" />
           <nav>{navItems.map(([id, label], index) => <a key={id} href={`#${id}`} onClick={() => setMenuOpen(false)}><span>0{index + 1}</span>{label}</a>)}</nav>
           <a href="mailto:meramiz@gmail.com">meramiz@gmail.com ↗</a>
         </div>

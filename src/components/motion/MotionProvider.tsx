@@ -117,15 +117,15 @@ export function MotionProvider({ children }: { children: React.ReactNode }) {
           const journeyTimeline = gsap.timeline({
             scrollTrigger: {
               trigger: ".journey-map",
-              start: "top 96%",
-              end: "bottom 96%",
+              start: "top 99%",
+              end: "bottom 82%",
               scrub: true,
               invalidateOnRefresh: true,
             },
           });
           journeyTimeline.fromTo(journeyLine, { strokeDasharray: lineLength, strokeDashoffset: lineLength }, { strokeDashoffset: 0, duration: 0.78, ease: "none" }, 0);
           document.querySelectorAll<SVGCircleElement>(".journey-path circle").forEach((circle) => {
-            const position = (Number(circle.getAttribute("cy")) / 3200) * 0.78;
+            const position = (Number(circle.getAttribute("cy")) / 2700) * 0.78;
             journeyTimeline.fromTo(circle, { opacity: 0, scale: 0 }, { opacity: 1, scale: 1, duration: 0.035, transformOrigin: "center", ease: "none" }, position);
           });
         }

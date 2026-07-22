@@ -9,7 +9,7 @@ export function Hero() {
       <div className="hero-stage">
         <div className="hero-word" data-hero-brand aria-hidden="true">RAMEEZ<sup>®</sup></div>
         <div className="hero-topline">
-          <p>THE MARKETER WHO<br />BUILDS THE SYSTEM.</p>
+          <p>THE MARKETER WHO BUILDS THE SYSTEM.</p>
           <div><a href="https://linkedin.com/in/rameez-majeed" target="_blank" rel="noreferrer">LINKEDIN ↗</a><a href="mailto:meramiz@gmail.com">EMAIL ↗</a></div>
         </div>
 
@@ -24,7 +24,6 @@ export function Hero() {
         </div>
 
         <div className="hero-stats-card hero-stats-card--one">
-          <Image className="hero-rm-mark" src={`${basePath}/rm-logo.svg`} alt="" width={68} height={68} aria-hidden="true" />
           <div className="hero-stat-copy"><strong><i>↗</i> 148+</strong><span>SEO &amp; developer<br />tools built</span></div>
         </div>
         <div className="hero-stats-card hero-stats-card--two">

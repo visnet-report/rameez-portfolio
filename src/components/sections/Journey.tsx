@@ -5,6 +5,24 @@ import { milestones } from "@/content/site";
 
 const initials = (name: string) => name.split(" ").map((word) => word[0]).join("").slice(0, 2);
 
+const focusItems = [
+  {
+    no: "01",
+    title: "AI search is reshaping discovery",
+    text: "How Google AI Overviews, ChatGPT, Perplexity and Bing Copilot are changing brand visibility - and what it takes for content to get cited rather than crawled.",
+  },
+  {
+    no: "02",
+    title: "AI as a force multiplier, not a chat box",
+    text: "Building marketing tooling with Claude Code, GitHub Copilot, Codex and Cursor - workflows that take days of manual work down to minutes.",
+  },
+  {
+    no: "03",
+    title: "Attribution that survives long B2B cycles",
+    text: "Multi-touch, cohort-based, time-aware attribution for sales motions that run months, not minutes.",
+  },
+];
+
 export function Journey() {
   const [expanded, setExpanded] = useState<number | null>(null);
 
@@ -25,26 +43,42 @@ export function Journey() {
         </div>
       </div>
 
+      <div className="journey-focus" data-reveal>
+        <div className="journey-focus__heading">
+          <span>WHAT I CARE ABOUT</span>
+          <h3>What I care about <em>right now.</em></h3>
+        </div>
+        <div className="journey-focus__grid">
+          {focusItems.map((item) => (
+            <article key={item.no}>
+              <span>{item.no}</span>
+              <h4>{item.title}</h4>
+              <p>{item.text}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+
       <div className="journey-map">
-        <svg className="journey-path" viewBox="0 0 1000 3200" preserveAspectRatio="none" aria-hidden="true">
-          <path className="journey-path__progress" d="M920 0 C875 130 700 115 650 245 C585 420 400 470 390 690 C380 890 680 930 650 1170 C620 1400 355 1430 390 1700 C420 1935 700 1950 650 2200 C600 2450 330 2490 400 2760 C450 2950 610 3040 520 3200" />
-          <circle cx="650" cy="245" r="9" />
-          <circle cx="390" cy="690" r="9" />
-          <circle cx="650" cy="1170" r="9" />
-          <circle cx="390" cy="1700" r="9" />
-          <circle cx="650" cy="2200" r="9" />
-          <circle cx="400" cy="2760" r="9" />
+        <svg className="journey-path" viewBox="0 0 1000 2700" preserveAspectRatio="none" aria-hidden="true">
+          <path className="journey-path__base" d="M880 0 C790 150 650 150 610 300 C560 490 360 500 390 760 C420 980 690 1000 645 1270 C605 1510 350 1550 395 1810 C435 2060 720 2100 640 2380 C600 2520 500 2580 520 2700" />
+          <path className="journey-path__progress" d="M880 0 C790 150 650 150 610 300 C560 490 360 500 390 760 C420 980 690 1000 645 1270 C605 1510 350 1550 395 1810 C435 2060 720 2100 640 2380 C600 2520 500 2580 520 2700" />
+          <circle cx="610" cy="300" r="10" />
+          <circle cx="390" cy="760" r="10" />
+          <circle cx="645" cy="1270" r="10" />
+          <circle cx="395" cy="1810" r="10" />
+          <circle cx="640" cy="2380" r="10" />
         </svg>
 
         {milestones.map((item, index) => (
-          <article className={`journey-card journey-card--${index + 1}`} key={item.year} data-reveal>
+          <article className={`journey-card journey-card--${index + 1}`} key={item.period} data-reveal>
             <span className="journey-card__year">{item.year === "Now" ? "NOW" : `'${item.year.slice(-2)}`}</span>
             <div className="journey-card__body">
               <h3>{item.role}</h3>
               <p>{item.text}</p>
               <footer>
                 <span className="journey-card__mark">{initials(item.company)}</span>
-                <p><strong>@{item.company.toLowerCase().replaceAll(" ", "-")}</strong><small>{index === milestones.length - 1 ? "Present" : `${milestones.length - index} chapters ago`}</small></p>
+                <p><strong>{item.company}</strong><small>{item.period}</small></p>
                 <button type="button" onClick={() => setExpanded(index)}>Read more <span>→</span></button>
               </footer>
             </div>
@@ -54,13 +88,13 @@ export function Journey() {
 
       {expanded !== null && (
         <div className="journey-modal-backdrop" onMouseDown={() => setExpanded(null)}>
-          <div className="journey-modal" role="dialog" aria-modal="true" aria-label={`${milestones[expanded].role} details`} onMouseDown={(event) => event.stopPropagation()}>
+          <div className="journey-modal" role="dialog" aria-modal="true" aria-label={`${milestones[expanded].jobTitle} details`} onMouseDown={(event) => event.stopPropagation()}>
             <button type="button" onClick={() => setExpanded(null)} autoFocus aria-label="Close journey story">×</button>
-            <span>{milestones[expanded].year}</span>
+            <span>{milestones[expanded].period}</span>
             <i>{initials(milestones[expanded].company)}</i>
-            <h3>{milestones[expanded].role}</h3>
-            <p>{milestones[expanded].text}</p>
-            <p>This chapter helped shape the combination of campaign leadership, hands-on delivery and technical curiosity that defines the work today.</p>
+            <h3>{milestones[expanded].jobTitle}</h3>
+            <h4>{milestones[expanded].company} · {milestones[expanded].location}</h4>
+            <p>{milestones[expanded].detail}</p>
           </div>
         </div>
       )}

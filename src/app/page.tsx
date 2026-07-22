@@ -6,8 +6,9 @@ import { Hero } from "@/components/sections/Hero";
 import { Journey } from "@/components/sections/Journey";
 import { Work } from "@/components/sections/Work";
 import { Capabilities } from "@/components/sections/Capabilities";
-import { Services } from "@/components/sections/Services";
-import { Testimonials } from "@/components/sections/Testimonials";
+import { Skills } from "@/components/sections/Services";
+import { Recommendations } from "@/components/sections/Testimonials";
+import { Certifications } from "@/components/sections/Certifications";
 import { CTA } from "@/components/sections/CTA";
 import { FAQ } from "@/components/sections/FAQ";
 
@@ -32,9 +33,10 @@ export default function Home() {
         <Journey />
         <Work />
         <Capabilities />
-        <Services />
+        <Skills />
+        <Recommendations />
+        <Certifications />
         <CTA />
-        <Testimonials />
         <FAQ />
       </main>
       <Footer />

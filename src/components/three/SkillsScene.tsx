@@ -1,7 +1,7 @@
 "use client";
 
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Float, Line } from "@react-three/drei";
+import { Float } from "@react-three/drei";
 import { useRef } from "react";
 import * as THREE from "three";
 
@@ -15,27 +15,26 @@ function OrbitSystem() {
     group.current.rotation.z = THREE.MathUtils.lerp(group.current.rotation.z, state.pointer.x * -0.08, 0.035);
   });
 
-  const orbit = (radius: number, tilt: number) => Array.from({ length: 121 }, (_, index) => {
-    const angle = (index / 120) * Math.PI * 2;
-    return new THREE.Vector3(Math.cos(angle) * radius, Math.sin(angle) * radius * 0.38, Math.sin(angle) * tilt);
-  });
-
   return (
     <group ref={group}>
-      <Float speed={1.3} rotationIntensity={0.22} floatIntensity={0.28}>
+      <Float speed={1.15} rotationIntensity={0.18} floatIntensity={0.2}>
         <mesh>
-          <icosahedronGeometry args={[1.5, 3]} />
-          <meshBasicMaterial color="#2B1F4F" wireframe transparent opacity={0.56} />
+          <sphereGeometry args={[1.52, 32, 20]} />
+          <meshBasicMaterial color="#8055FF" wireframe transparent opacity={0.82} />
         </mesh>
-        <mesh scale={0.72}>
-          <icosahedronGeometry args={[1.5, 1]} />
-          <meshBasicMaterial color="#4CEEE8" wireframe transparent opacity={0.65} />
+        <mesh scale={0.98}>
+          <sphereGeometry args={[1.48, 32, 20]} />
+          <meshStandardMaterial color="#2B1F4F" transparent opacity={0.34} roughness={0.22} metalness={0.3} />
         </mesh>
+        {[0, 1, 2].map((ring) => (
+          <mesh key={ring} rotation={[Math.PI / 2 + ring * 0.35, ring * 0.4, ring * 0.7]}>
+            <torusGeometry args={[2.05 + ring * 0.22, 0.012, 8, 140]} />
+            <meshBasicMaterial color={ring === 1 ? "#4CEEE8" : "#8055FF"} transparent opacity={0.46} />
+          </mesh>
+        ))}
       </Float>
-      <Line points={orbit(2.55, 0.82)} color="#2B1F4F" lineWidth={1} transparent opacity={0.34} />
-      <Line points={orbit(2.12, -1.15)} color="#8055FF" lineWidth={1} transparent opacity={0.34} rotation={[0.5, 0.2, 1]} />
       {[
-        [-2.25, 0.2, 0.35], [2.25, -0.35, -0.15], [0.7, 1.2, 1.3], [-0.4, -1.15, -1.2],
+        [-2.15, 0.25, 0.3], [2.2, -0.3, -0.15], [0.65, 1.25, 1.25], [-0.45, -1.15, -1.1],
       ].map((position, index) => (
         <Float key={index} speed={1.5 + index * 0.15} floatIntensity={0.5}>
           <mesh position={position as [number, number, number]}>
@@ -50,9 +49,10 @@ function OrbitSystem() {
 
 export function SkillsScene() {
   return (
-    <Canvas camera={{ position: [0, 0, 6.4], fov: 43 }} dpr={[1, 1.6]} gl={{ alpha: true, antialias: true }}>
-      <ambientLight intensity={1.25} />
-      <directionalLight position={[3, 4, 5]} intensity={2.2} color="#C2FFFD" />
+    <Canvas camera={{ position: [0, 0, 6.8], fov: 42 }} dpr={[1, 1.6]} gl={{ alpha: true, antialias: true }}>
+      <ambientLight intensity={1.5} />
+      <directionalLight position={[3, 4, 5]} intensity={2.4} color="#C2FFFD" />
+      <pointLight position={[-3, -2, 3]} intensity={2.2} color="#8055FF" />
       <OrbitSystem />
     </Canvas>
   );
